@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="xbjy_servlet_2019101:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/xbjy_servlet_2019101_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="xbjy_servlet_2019101" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="xbjy_servlet_2019101/web/Web" />
+    </root>
+  </artifact>
+</component>
