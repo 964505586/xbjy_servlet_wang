@@ -13,7 +13,11 @@ public class Menu implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /***
+     * 主键ID
+     */
     private Integer id;
+
     private Integer pId;
     private String type;
     private String name;
