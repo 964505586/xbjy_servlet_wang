@@ -20,7 +20,7 @@ public class MenuDao {
 
     public List<Menu> listAll() {
         //物理删除，逻辑删除  del_flag
-        String sql = "select * from sys_menu";
+        String sql = "select * from sys_menu order by order_by";
         return template.query(sql, new BeanPropertyRowMapper<>(Menu.class));
     }
 }
