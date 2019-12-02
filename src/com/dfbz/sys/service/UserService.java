@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    public List<User> listAll(String account, Page page);
+    public List<User> list(String account, Page page);
 
     public Integer getCount(String account);
 

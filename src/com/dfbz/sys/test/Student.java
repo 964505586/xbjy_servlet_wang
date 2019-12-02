@@ -1,4 +1,4 @@
-package com.dfbz.test;
+package com.dfbz.sys.test;
 
 /**
  * @author admin

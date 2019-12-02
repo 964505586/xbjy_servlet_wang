@@ -1,6 +1,6 @@
 package com.dfbz.sys.dao;
 
-import com.dfbz.sys.entity.Menu;
+import com.dfbz.sys.entity.Dept;
 import com.dfbz.sys.utils.DBUtil;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,16 +11,16 @@ import java.util.List;
  * @author admin
  * @version 1.0.1
  * @company 东方标准
- * @date 2019/11/29 15:02
+ * @date 2019/12/2 11:27
  * @description
  */
-public class MenuDao {
+public class DeptDao {
 
     private JdbcTemplate template = new JdbcTemplate(DBUtil.getDataSource());
 
-    public List<Menu> listAll() {
-        //物理删除，逻辑删除  del_flag
-        String sql = "select * from sys_menu order by order_by";
-        return template.query(sql, new BeanPropertyRowMapper<>(Menu.class));
+    public List<Dept> listAll() {
+        String sql = "SELECT * from sys_dept";
+        return template.query(sql, new BeanPropertyRowMapper<>(Dept.class));
     }
+
 }

@@ -4,10 +4,8 @@ import com.dfbz.sys.dao.UserDao;
 import com.dfbz.sys.entity.Page;
 import com.dfbz.sys.entity.User;
 import com.dfbz.sys.service.UserService;
-import com.dfbz.utils.DateUtil;
+import com.dfbz.sys.utils.DateUtil;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,8 +26,8 @@ public class UserServiceImpl implements UserService {
      * @date 2019/12/2 12:04
      * @params []
      */
-    public List<User> listAll(String account, Page page) {
-        return userDao.listAll(account, page);
+    public List<User> list(String account, Page page) {
+        return userDao.list(account, page);
     }
 
     /***

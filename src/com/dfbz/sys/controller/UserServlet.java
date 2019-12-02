@@ -48,7 +48,7 @@ public class UserServlet extends BaseServlet {
         Integer pageCurrent = pageStr == null ? 1 : Integer.valueOf(pageStr);
         page.setPageCurrent(pageCurrent);
 
-        List<User> list = service.listAll(account, page);
+        List<User> list = service.list(account, page);
         //查询的数据
         request.setAttribute("list", list);
         //查询条件

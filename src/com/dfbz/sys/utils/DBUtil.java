@@ -1,4 +1,4 @@
-package com.dfbz.utils;
+package com.dfbz.sys.utils;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,4 +1,4 @@
-package com.dfbz.utils;
+package com.dfbz.sys.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,7 +8,7 @@ import java.util.Date;
  * @version 1.0.1
  * @company 东方标准
  * @date 2019/12/2 15:37
- * @description
+ * @description 日期工具类
  */
 public class DateUtil {
 

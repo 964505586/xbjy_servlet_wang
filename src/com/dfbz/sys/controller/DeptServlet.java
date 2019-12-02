@@ -1,8 +1,14 @@
 package com.dfbz.sys.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.dfbz.sys.entity.Dept;
+import com.dfbz.sys.service.impl.DeptServiceImpl;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * @author admin
@@ -14,7 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/sys/dept/*")
 public class DeptServlet extends BaseServlet {
 
-    public void list(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("DeptServlet list");
+    private DeptServiceImpl service = new DeptServiceImpl();
+
+    public void listAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        List<Dept> list = service.listAll();
+        String deptJsonStr = JSON.toJSONString(list);
+        PrintWriter out = response.getWriter();
+        out.append(deptJsonStr);
     }
 }

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>添加用户</title>
     <script src="${path}/static/jquery-validation-1.9.0/jquery.validate.js"></script>
 </head>
 <style>
@@ -67,6 +67,8 @@
 </body>
 <script>
     $(function () {
+
+        //获取部门
         $.ajax({
             url: "/sys/dept/listAll",
             data: "",
@@ -81,6 +83,7 @@
             }
         });
 
+        // 表单验证start
         $.validator.addMethod("checkAccount", function (value, element, params) {
             var reg = /^[0-9a-zA-Z]{5,10}$/;
             if (reg.test(value)) {
@@ -101,6 +104,7 @@
                 }
             }
         });
+        // 表单验证end
 
     })
     ;

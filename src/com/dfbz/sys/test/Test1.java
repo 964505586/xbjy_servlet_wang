@@ -1,6 +1,5 @@
-package com.dfbz.test;
+package com.dfbz.sys.test;
 
-import javax.xml.ws.soap.MTOM;
 import java.lang.reflect.Method;
 
 /**
@@ -19,7 +18,7 @@ public class Test1 {
 //        student.run();
 
         Class clazz = Student.class;
-        Class clazz2 = Class.forName("com.dfbz.test.Student");
+        Class clazz2 = Class.forName("com.dfbz.sys.test.Student");
         Class clazz3 = student.getClass();
 
         Method method = clazz.getDeclaredMethod("run",String.class);

@@ -2,7 +2,7 @@ package com.dfbz.sys.dao;
 
 import com.dfbz.sys.entity.Page;
 import com.dfbz.sys.entity.User;
-import com.dfbz.utils.DBUtil;
+import com.dfbz.sys.utils.DBUtil;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -19,7 +19,7 @@ public class UserDao {
 
     private JdbcTemplate template = new JdbcTemplate(DBUtil.getDataSource());
 
-    public List<User> listAll(String account, Page page) {
+    public List<User> list(String account, Page page) {
         String sql = "SELECT " +
                 "d.NAME deptName," +
                 "u.id id," +
