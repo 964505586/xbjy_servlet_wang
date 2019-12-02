@@ -1,11 +1,15 @@
 package com.dfbz.sys.controller;
 
+import com.dfbz.sys.entity.User;
+import com.dfbz.sys.service.impl.UserServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author admin
@@ -17,12 +21,14 @@ import java.io.IOException;
 @WebServlet("/sys/user/*")
 public class UserServlet extends BaseServlet {
 
-    public void list(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("UserServlet list");
+    private UserServiceImpl service = new UserServiceImpl();
+
+    public void list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        List<User> list = service.listAll();
+        request.setAttribute("list", list);
+
+        request.getRequestDispatcher("/view/sys/user/list.jsp").forward(request, response);
     }
 
-    public void add(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("UserServlet add");
-    }
 
 }

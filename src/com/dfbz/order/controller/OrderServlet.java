@@ -1,5 +1,7 @@
 package com.dfbz.order.controller;
 
+import com.dfbz.sys.controller.BaseServlet;
+
 import javax.servlet.annotation.WebServlet;
 
 /**
@@ -9,6 +11,6 @@ import javax.servlet.annotation.WebServlet;
  * @date 2019/11/29 15:11
  * @description
  */
-@WebServlet("/order")
-public class OrderServlet {
+@WebServlet("/order/order/*")
+public class OrderServlet extends BaseServlet {
 }

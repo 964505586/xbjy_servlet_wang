@@ -25,13 +25,12 @@ import java.util.stream.Collectors;
  * @date 2019/11/29 15:10
  * @description 菜单控制器
  */
-@WebServlet("/sys/menu")
-public class MenuServlet extends HttpServlet {
+@WebServlet("/sys/menu/*")
+public class MenuServlet extends BaseServlet {
 
     private MenuServiceImpl service = new MenuServiceImpl();
 
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void menu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Menu> list = service.listAll();
 
         //1级菜单

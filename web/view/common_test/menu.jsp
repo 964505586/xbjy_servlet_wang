@@ -10,7 +10,7 @@
 <script>
     $(function () {
         // $.ajax({
-        //     url: "/sys/menu",
+        //     url: "/sys/menu/menu",
         //     type: "get",
         //     data: "",
         //     dataType: "json",
@@ -41,7 +41,7 @@
 
 
         $.ajax({
-            url: "/sys/menu",
+            url: "/sys/menu/menu",
             type: "get",
             data: "",
             dataType: "json",
