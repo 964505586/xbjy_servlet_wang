@@ -14,4 +14,11 @@ public interface UserService {
     public void add(User user);
 
     public void deleteById(Integer id);
+
+    public User getUserById(Integer id);
+
+    public void update(User user);
+
+    public void updatePassword(User user);
+
 }

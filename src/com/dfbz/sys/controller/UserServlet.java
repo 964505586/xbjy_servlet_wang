@@ -1,8 +1,12 @@
 package com.dfbz.sys.controller;
 
+import com.dfbz.sys.constants.SysConstant;
+import com.dfbz.sys.entity.Dept;
 import com.dfbz.sys.entity.Page;
 import com.dfbz.sys.entity.User;
+import com.dfbz.sys.service.impl.DeptServiceImpl;
 import com.dfbz.sys.service.impl.UserServiceImpl;
+import com.dfbz.sys.utils.MDUtil;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +30,8 @@ import java.util.Map;
 public class UserServlet extends BaseServlet {
 
     private UserServiceImpl service = new UserServiceImpl();
+
+    private DeptServiceImpl deptService = new DeptServiceImpl();
 
     /**
      * @return void
@@ -85,4 +92,74 @@ public class UserServlet extends BaseServlet {
         service.deleteById(Integer.valueOf(id));
         response.sendRedirect("/sys/user/list");
     }
+
+    /***
+     * @decription 通过id查询User
+     * @author admin
+     * @date 2019/12/3 10:09
+     * @params [request, response]
+     * @return void
+     */
+    public void toUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //查询所有部门
+        List<Dept> deptList = deptService.listAll();
+
+        String id = request.getParameter("id");
+        if (id == null) {
+            return;
+        }
+        User user = service.getUserById(Integer.valueOf(id));
+
+        request.setAttribute("user", user);
+        // request.setAttribute("deptList", deptList);
+        request.getRequestDispatcher("/view/sys/user/update.jsp").forward(request, response);
+    }
+
+    /***
+     * @decription 修改
+     * @author admin
+     * @date 2019/12/3 10:29
+     * @params [request, response]
+     * @return void
+     */
+    public void update(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        User user = new User();
+        Map<String, String[]> map = request.getParameterMap();
+        BeanUtils.populate(user, map);
+        service.update(user);
+        response.sendRedirect("/sys/user/list");
+    }
+
+    /***
+     * @decription 修改密码
+     * @author admin
+     * @date 2019/12/3 12:29
+     * @params [request, response]
+     * @return void
+     */
+    public void forgetPassword(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String account = request.getParameter("account");
+        String password = request.getParameter("password");
+        //前端输入的验证码
+        String code = request.getParameter("code");
+
+        HttpSession session = request.getSession();
+        //取出session中的code
+        Object object = session.getAttribute(SysConstant.SESSION_EMAIL_CODE_NAME);
+
+        //比较前端输入的code和session中的code
+        if (object == null || !code.equals(object.toString())) {
+            response.sendRedirect("/view/sys/user/forget.jsp");
+            return;
+        }
+
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(MDUtil.md5(password));
+        service.updatePassword(user);
+        //修改完毕，跳转到登录界面
+        response.sendRedirect("/index.jsp");
+
+    }
+
 }

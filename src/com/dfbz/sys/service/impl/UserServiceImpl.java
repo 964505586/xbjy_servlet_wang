@@ -5,6 +5,7 @@ import com.dfbz.sys.entity.Page;
 import com.dfbz.sys.entity.User;
 import com.dfbz.sys.service.UserService;
 import com.dfbz.sys.utils.DateUtil;
+import com.dfbz.sys.utils.MDUtil;
 
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService {
      * @return void
      */
     public void add(User user) {
+        user.setPassword(MDUtil.md5(user.getPassword()));
         user.setCreateTime(DateUtil.getDateStr());
         user.setCreateBy(null);
         userDao.add(user);
@@ -63,5 +65,38 @@ public class UserServiceImpl implements UserService {
      */
     public void deleteById(Integer id) {
         userDao.deleteById(id);
+    }
+
+    /***
+     * @decription 通过id查询User
+     * @author admin
+     * @date 2019/12/3 10:07
+     * @params [id]
+     * @return com.dfbz.sys.entity.User
+     */
+    public User getUserById(Integer id) {
+        return userDao.getUserById(id);
+    }
+
+    /***
+     * @decription 修改
+     * @author admin
+     * @date 2019/12/3 10:32
+     * @params [user]
+     * @return void
+     */
+    public void update(User user) {
+        userDao.update(user);
+    }
+
+    /***
+     * @decription 修改密码
+     * @author admin
+     * @date 2019/12/3 12:26
+     * @params [user]
+     * @return void
+     */
+    public void updatePassword(User user) {
+        userDao.updatePassword(user);
     }
 }

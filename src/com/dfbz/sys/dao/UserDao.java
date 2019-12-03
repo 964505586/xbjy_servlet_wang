@@ -50,4 +50,20 @@ public class UserDao {
         String sql = "delete from sys_user where id = ?";
         template.update(sql, id);
     }
+
+    public User getUserById(Integer id) {
+        String sql = "select * from sys_user where id = ? ";
+        return template.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), id);
+    }
+
+    public void update(User user) {
+        String sql = "update sys_user set dept_id=?, account=?, name=? ,age=? ,sex=?,email=?, birth_date=? where id=?";
+        template.update(sql, user.getDeptId(), user.getAccount(), user.getName(), user.getAge(), user.getSex(), user.getEmail(), user.getBirthDate(), user.getId());
+    }
+
+    public void updatePassword(User user) {
+        //系统account唯一
+        String sql = "update sys_user set password =? where account = ? ";
+        template.update(sql, user.getPassword(), user.getAccount());
+    }
 }
