@@ -4,17 +4,13 @@
     <title>查询用户</title>
     <%--<%@ include file="/taglib.jsp" %>--%>
 </head>
-<script>
-    $(function () {
-
-    });
-</script>
-
 <body>
-<%@ include file="/view/common_test/head.jsp" %>
-<div>
-    <%@ include file="/view/common_test/menu.jsp" %>
-    <div style="border: 1px solid red;width: 88%;height: 85%;float: right;">
+<%@include file="/view/common/head.jsp" %>
+<div class="d-flex align-items-stretch">
+    <%@include file="/view/common/menu.jsp" %>
+    <div class="page-content">
+
+        <%--主体部分start--%>
 
         <form action="/sys/user/list" method="get">
             账号：<input type="text" value="${account}" name="account">
@@ -89,6 +85,8 @@
         <a href="/sys/user/list?account=${account}&page=${page.pageCount}">末页</a>
         当前页：${page.pageCurrent},总页数：${page.pageCount}，总记录数：${page.count}
 
+        <%--主体部分end--%>
+        <%@include file="/view/common/foot.jsp" %>
     </div>
 </div>
 </body>

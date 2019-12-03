@@ -28,7 +28,7 @@ public class EmailUtil {
     public static void sendEmail(String emailName, String code) {
         try {
             //设置发件人
-            String from = "1223127421@qq.com";
+            String from = "122@qq.com";
             //设置收件人
             String to = emailName;
             //设置邮件发送的服务器，这里为QQ邮件服务器
@@ -50,7 +50,7 @@ public class EmailUtil {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     //第三方登录授权码
-                    return new PasswordAuthentication(from, "ybddiuheulwqjejh");
+                    return new PasswordAuthentication(from, "你的授权码");
                 }
             });
             Message message = new MimeMessage(session);

@@ -12,11 +12,12 @@
 </style>
 
 <body>
-<%@ include file="/view/common_test/head.jsp" %>
-<div>
-    <%@ include file="/view/common_test/menu.jsp" %>
-    <div style="border: 1px solid red;width: 88%;height: 85%;float: right;">
+<%@include file="/view/common/head.jsp" %>
+<div class="d-flex align-items-stretch">
+    <%@include file="/view/common/menu.jsp" %>
+    <div class="page-content">
 
+        <%--主体部分start--%>
         <form action="/sys/user/update" method="get" id="form-add">
 
             <%--隐藏域--%>
@@ -74,6 +75,9 @@
             </div>
         </form>
 
+        <%--主体部分end--%>
+
+        <%@include file="/view/common/foot.jsp" %>
     </div>
 </div>
 </body>
