@@ -42,8 +42,8 @@ public class UserDao {
     }
 
     public void add(User user) {
-        String sql = "insert into sys_user (id,dept_id,account,password,name,age,sex,email,birth_date,create_time) values (null,?,?,?,?,?,?,?,?,?)";
-        template.update(sql, user.getDeptId(), user.getAccount(), user.getPassword(), user.getName(), user.getAge(), user.getSex(), user.getEmail(), user.getBirthDate(), user.getCreateTime());
+        String sql = "insert into sys_user (id,dept_id,account,password,name,age,sex,email,birth_date,create_time,create_by) values (null,?,?,?,?,?,?,?,?,?,?)";
+        template.update(sql, user.getDeptId(), user.getAccount(), user.getPassword(), user.getName(), user.getAge(), user.getSex(), user.getEmail(), user.getBirthDate(), user.getCreateTime(), user.getCreateBy());
     }
 
     public void deleteById(Integer id) {
@@ -65,5 +65,10 @@ public class UserDao {
         //系统account唯一
         String sql = "update sys_user set password =? where account = ? ";
         template.update(sql, user.getPassword(), user.getAccount());
+    }
+
+    public List<User> checkLogin(User user) {
+        String sql = "select * from sys_user where account= ? and password = ? ";
+        return template.query(sql, new BeanPropertyRowMapper<>(User.class), user.getAccount(), user.getPassword());
     }
 }

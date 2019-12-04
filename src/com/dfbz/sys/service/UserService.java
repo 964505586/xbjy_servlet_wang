@@ -3,6 +3,7 @@ package com.dfbz.sys.service;
 import com.dfbz.sys.entity.Page;
 import com.dfbz.sys.entity.User;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface UserService {
@@ -20,5 +21,7 @@ public interface UserService {
     public void update(User user);
 
     public void updatePassword(User user);
+
+    public List<User> checkLogin(User user);
 
 }

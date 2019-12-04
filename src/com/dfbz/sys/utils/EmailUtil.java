@@ -23,12 +23,15 @@ public class EmailUtil {
      * @decription
      * @author admin
      * @date 2019/12/3 11:55
-     * @params [emailName 收件人, code 验证码]
+     * @params [emailName 收件人邮箱地址, code 验证码]
      */
     public static void sendEmail(String emailName, String code) {
+
+        //第一步：设置发件人邮箱地址，第二步：开启smtp服务
+
         try {
             //设置发件人
-            String from = "1223127421@qq.com";
+            String from = "122@qq.com";
             //设置收件人
             String to = emailName;
             //设置邮件发送的服务器，这里为QQ邮件服务器
@@ -50,7 +53,7 @@ public class EmailUtil {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     //第三方登录授权码
-                    return new PasswordAuthentication(from, "ezbmdoodxyfigiac");
+                    return new PasswordAuthentication(from, "你的授权码");
                 }
             });
             Message message = new MimeMessage(session);

@@ -1,5 +1,6 @@
 package com.dfbz.sys.service.impl;
 
+import com.dfbz.sys.constants.SysConstant;
 import com.dfbz.sys.dao.UserDao;
 import com.dfbz.sys.entity.Page;
 import com.dfbz.sys.entity.User;
@@ -7,6 +8,8 @@ import com.dfbz.sys.service.UserService;
 import com.dfbz.sys.utils.DateUtil;
 import com.dfbz.sys.utils.MDUtil;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -52,7 +55,6 @@ public class UserServiceImpl implements UserService {
     public void add(User user) {
         user.setPassword(MDUtil.md5(user.getPassword()));
         user.setCreateTime(DateUtil.getDateStr());
-        user.setCreateBy(null);
         userDao.add(user);
     }
 
@@ -98,5 +100,16 @@ public class UserServiceImpl implements UserService {
      */
     public void updatePassword(User user) {
         userDao.updatePassword(user);
+    }
+
+    /***
+     * @decription 验证账号和密码
+     * @author admin
+     * @date 2019/12/4 14:48
+     * @params [user]
+     * @return com.dfbz.sys.entity.User
+     */
+    public List<User> checkLogin(User user) {
+        return userDao.checkLogin(user);
     }
 }

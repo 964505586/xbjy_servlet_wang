@@ -1,10 +1,14 @@
 package com.dfbz.sys.controller;
 
+import com.dfbz.sys.constants.SysConstant;
+import com.dfbz.sys.entity.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -18,8 +22,23 @@ import java.lang.reflect.Method;
  */
 public class BaseServlet extends HttpServlet {
 
+    //登陆信息
+    private User loginUser = new User();
+
+    public User getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(User loginUser) {
+        this.loginUser = loginUser;
+    }
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //取出session中的登陆信息
+        HttpSession session = request.getSession();
+        loginUser = (User) session.getAttribute(SysConstant.SESSION_LOGIN_NAME);
+
         //请求头   /sys/user/list
         String methodStr = request.getRequestURI();
         String[] methodArr = methodStr.split("/");
@@ -43,4 +62,5 @@ public class BaseServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }

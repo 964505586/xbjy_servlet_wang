@@ -71,7 +71,8 @@ public class UserServlet extends BaseServlet {
         //获取请求体里面的数据
         Map<String, String[]> map = request.getParameterMap();
         BeanUtils.populate(user, map);
-
+        //设置创建人
+        user.setCreateBy(super.getLoginUser().getId());
         service.add(user);
         response.sendRedirect("/sys/user/list");
     }
