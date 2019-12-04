@@ -32,7 +32,7 @@ public class EmailServlet extends BaseServlet {
         //发送验证码
         EmailUtil.sendEmail(emailName, String.valueOf(code));
 
-        //把验证码存到session中
+        //把验证码存到session中  （mysql id ,code）（redis key code）
         HttpSession session = request.getSession();
         session.setAttribute(SysConstant.SESSION_EMAIL_CODE_NAME, code);
         //设置有效时间60秒
