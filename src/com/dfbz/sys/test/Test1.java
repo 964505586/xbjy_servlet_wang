@@ -9,6 +9,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
@@ -22,9 +24,7 @@ import java.util.Properties;
  */
 public class Test1 {
 
-
     public static void main(String[] args) throws Exception {
-
 
     }
 }

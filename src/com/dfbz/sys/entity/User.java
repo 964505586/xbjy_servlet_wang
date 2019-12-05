@@ -138,7 +138,7 @@ public class User extends BaseEntity {
                 ", email='" + email + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 ", createTime='" + createTime + '\'' +
-                ", createBy='" + createBy + '\'' +
+                ", createBy=" + createBy +
                 ", delFlag=" + delFlag +
                 '}';
     }

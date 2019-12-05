@@ -1,3 +1,7 @@
+<%@ page import="java.net.URLDecoder" %>
+<%@ page import="com.alibaba.fastjson.JSON" %>
+<%@ page import="com.alibaba.fastjson.TypeReference" %>
+<%@ page import="com.dfbz.sys.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -29,6 +33,24 @@
 <%--<input type="submit" name="" value="登录">--%>
 <%--</form>--%>
 
+<%
+    Cookie[] cookies = request.getCookies();
+    User loginUser = new User();
+    if (cookies != null) {
+        for (int i = 0; i < cookies.length; i++) {
+            if ("cookieLoginUser".equals(cookies[i].getName())) {
+                //获取cookie中的值
+                String cookieValue = cookies[i].getValue();
+                //解码
+                String strJson = URLDecoder.decode(cookieValue, "utf-8");
+                //把json字符串转换成java对象
+                loginUser = JSON.parseObject(strJson, new TypeReference<User>() {
+                });
+            }
+        }
+    }
+%>
+
 <div class="container myBox">
     <div class="col-xs-8 col-xs-offset-3 col-sm-6 form-box">
         <div class="form-top">
@@ -47,13 +69,17 @@
                 <div class="row">
                     <div class="form-group">
                         <label class="sr-only" for="account">Username</label>
-                        <input type="text" name="account" placeholder="账号" id="account" style="width: 200%;">
+                        <input type="text" name="account" placeholder="账号" id="account"
+                               value="<%=loginUser.getAccount()==null?"":loginUser.getAccount()%>"
+                               style="width: 200%;">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
                         <label class="sr-only" for="password">Password</label>
-                        <input type="password" name="password" placeholder="密码" id="password" style="width: 200%;">
+                        <input type="text" name="password" placeholder="密码" id="password"
+                               value="<%=loginUser.getPassword()==null?"":loginUser.getPassword()%>"
+                               style="width: 200%;">
                     </div>
                 </div>
 
