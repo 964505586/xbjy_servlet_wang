@@ -29,6 +29,8 @@
             </a>
                 <!-- Sidebar Toggle Btn-->
                 <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
+                <%--从application作用域中取出在线人数--%>
+                当前在线人数：${applicationScope.applicationLoginCount}
             </div>
             <div class="right-menu list-inline no-margin-bottom">
                 <!-- Log out -->

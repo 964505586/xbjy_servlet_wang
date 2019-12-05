@@ -22,6 +22,7 @@ public class UserDao {
     public List<User> list(String account, Page page) {
         String sql = "SELECT " +
                 "d.NAME deptName," +
+                "su.NAME createName," +
                 "u.id id," +
                 "u.account account," +
                 "u.NAME name," +
@@ -32,6 +33,7 @@ public class UserDao {
                 "FROM " +
                 "sys_user u " +
                 "LEFT JOIN sys_dept d ON u.dept_id = d.id " +
+                "LEFT JOIN sys_user su ON u.create_by = su.id " +
                 "where u.account like ? limit ?,?";
         return template.query(sql, new BeanPropertyRowMapper<>(User.class), "%" + account + "%", (page.getPageCurrent() - 1) * page.getPageSize(), page.getPageSize());
     }

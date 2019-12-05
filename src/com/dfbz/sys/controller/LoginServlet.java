@@ -8,6 +8,7 @@ import com.dfbz.sys.utils.ImgCodeUtil;
 import com.dfbz.sys.utils.MDUtil;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -49,12 +50,12 @@ public class LoginServlet extends BaseServlet {
 
         //验证图片的验证码
         //从session中取出图片验证码，和前端输入的验证码做比较
-        Object obj = session.getAttribute(SysConstant.SESSION_PIC_CODE_NAME);
-        if (obj == null || !obj.toString().equals(picCode)) {
-            //图片验证码不正确
-            response.sendRedirect("/index.jsp");
-            return;
-        }
+//        Object obj = session.getAttribute(SysConstant.SESSION_PIC_CODE_NAME);
+//        if (obj == null || !obj.toString().equals(picCode)) {
+//            //图片验证码不正确
+//            response.sendRedirect("/index.jsp");
+//            return;
+//        }
 
         //从数据库验证账号和密码
         User user = new User();
@@ -69,9 +70,19 @@ public class LoginServlet extends BaseServlet {
             return;
         } else {
             User loginUser = list.get(0);
-
             //全部验证通过，把登陆信息放入session,可以直接存对象loginUser
             session.setAttribute(SysConstant.SESSION_LOGIN_NAME, list.get(0));
+
+            //在线人数
+            ServletContext application = getServletContext();
+            //取出application中的在线人数
+            Object countObj = application.getAttribute(SysConstant.APPLICATION_LOGIN_COUNT);
+            int count = 1;
+            if (countObj != null) {
+                count = Integer.valueOf(countObj.toString()) + 1;
+            }
+            //把新的在线人数存入application中
+            application.setAttribute(SysConstant.APPLICATION_LOGIN_COUNT, count);
 
             //如果勾选7天免登录，则把登陆信息放入cookie，cookie中不能直接存对象，所以只能存入字符串
             if ("1".equals(remember)) {

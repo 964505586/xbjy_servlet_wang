@@ -14,4 +14,6 @@ public class SysConstant {
     public static final String SESSION_LOGIN_NAME = "sessionLoginName";
 
     public static final String COOKIE_LOGIN_USER = "cookieLoginUser";
+
+    public static final String APPLICATION_LOGIN_COUNT = "applicationLoginCount";
 }

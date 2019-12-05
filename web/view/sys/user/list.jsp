@@ -33,6 +33,7 @@
                 <th>性别</th>
                 <th>出生日期</th>
                 <th>创建时间</th>
+                <th>创建人</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -68,6 +69,7 @@
                             <%--把日期对象转换成规定的字符串格式--%>
                         <fmt:formatDate value="${createTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                     </td>
+                    <td>${user.createName}</td>
                     <td>
                         <a href="/sys/user/toUpdate?id=${user.id}" class="btn btn-danger">修改</a>
                         <a href="/sys/user/deleteById?id=${user.id}" class="btn btn-danger">删除</a>

@@ -2,7 +2,10 @@ package com.dfbz.sys.entity;
 
 public class User extends BaseEntity {
 
+    //部门名称
     private String deptName;
+    //创建人
+    private String createName;
 
     /**
      *
@@ -26,6 +29,14 @@ public class User extends BaseEntity {
 
     public void setDeptName(String deptName) {
         this.deptName = deptName;
+    }
+
+    public String getCreateName() {
+        return createName;
+    }
+
+    public void setCreateName(String createName) {
+        this.createName = createName;
     }
 
     public Integer getId() {
@@ -127,8 +138,7 @@ public class User extends BaseEntity {
     @Override
     public String toString() {
         return "User{" +
-                "deptName='" + deptName + '\'' +
-                ", id=" + id +
+                "id=" + id +
                 ", deptId=" + deptId +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
