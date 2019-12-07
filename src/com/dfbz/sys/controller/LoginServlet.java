@@ -60,8 +60,7 @@ public class LoginServlet extends BaseServlet {
         //从数据库验证账号和密码
         User user = new User();
         user.setAccount(account);
-        //密文
-        user.setPassword(MDUtil.md5(password));
+        user.setPassword(MDUtil.md5(password));   //密文密码存入
         List<User> list = service.checkLogin(user);
         //账号或密码不正确，或系统存在相同的账号和密码
         if (list == null || list.size() == 0 || list.size() > 1) {
@@ -86,7 +85,7 @@ public class LoginServlet extends BaseServlet {
 
             //如果勾选7天免登录，则把登陆信息放入cookie，cookie中不能直接存对象，所以只能存入字符串
             if ("1".equals(remember)) {
-                //cookie中的密码存入明文密码
+                //cookie中的密码存入明文密码 方便填入密码框
                 loginUser.setPassword(password);
 
                 //cookie的值不能存特殊字符（" , :），所以提供2种解决方案
